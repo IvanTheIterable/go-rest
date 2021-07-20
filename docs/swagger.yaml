@@ -1,0 +1,70 @@
+definitions:
+  model.Message:
+    properties:
+      date:
+        type: integer
+      id:
+        type: string
+      payload:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: This is a go-rest example project.
+  title: go-rest example project
+  version: "1.0"
+paths:
+  /:
+    post:
+      description: Post new message
+      parameters:
+      - description: Message
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/model.Message'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: created
+          schema:
+            type: string
+  /{id}:
+    get:
+      description: get message
+      parameters:
+      - description: Id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+  /all:
+    get:
+      description: get all messages
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+  /status:
+    get:
+      description: get status
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+swagger: "2.0"
